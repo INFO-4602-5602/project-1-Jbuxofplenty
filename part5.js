@@ -41,13 +41,13 @@ var svg6 = d3.select("#scatterplotSet").append("svg")
             .append("g")
             .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
-create_graph("/data/anscombe_I.csv", svg3);
-create_graph("/data/anscombe_II.csv", svg4);
-create_graph("/data/anscombe_III.csv", svg5);
-create_graph("/data/anscombe_IV.csv", svg6);
+create_graph("/data/anscombe_I.csv", svg3, "Anscombe_I");
+create_graph("/data/anscombe_II.csv", svg4, "Anscombe_II");
+create_graph("/data/anscombe_III.csv", svg5, "Anscombe_III");
+create_graph("/data/anscombe_IV.csv", svg6, "Anscombe_IV");
 
 // Create Event Handlers for mouse (mouse out)
-function create_graph(filename, svg) {
+function create_graph(filename, svg, dataset) {
 
   // Get the data
   d3.csv(filename, function(error, data){
@@ -96,5 +96,12 @@ function create_graph(filename, svg) {
                     .text(yVal)
                     .attr("y", -10)
                     .attr("transform", "rotate(90)");
+
+    var graphLabel = svg.append("text")
+                    .attr("class", "label")
+                    .text(dataset)
+                    .attr("x", width1 / 2 - 40)
+                    .style("font-size", "14px")
+                    .attr("y", height1 + 30);
   });
 }
