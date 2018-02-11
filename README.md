@@ -7,7 +7,7 @@ In this project, you will work with D3 to visualize the four datasets of Anscomb
 <h2>Collaboration Policy:</h2>
 You may optionally work in groups on this project. If you choose to work with others, all group members must submit their own work and you should note who you worked with the complete the project at the top of your readme.txt file.
 
-You are also welcome to use resources found online; however, the code you submit should be your own (please do not directly copy-paste code from a tutorial or online example). If you use code from any online sources, please also list those sources and what pieces of the code you used those sources to complete. Also, for each of these sources, please add your own comments as to what the code does so I can grade your project based on your own understanding of the code. 
+You are also welcome to use resources found online; however, the code you submit should be your own (please do not directly copy-paste code from a tutorial or online example). If you use code from any online sources, please also list those sources and what pieces of the code you used those sources to complete. Also, for each of these sources, please add your own comments as to what the code does so I can grade your project based on your own understanding of the code.
 
 <h2>Submission: </h2>
 All assignments must be submitted through GitHub. To submit your assignment, please create a new directory in the “Submissions” directory, named as your last name (e.g., “szafir”). All submissions should include a readme.txt with the answers to the free response questions and a list of any collaborators you worked with on this project.
@@ -17,7 +17,7 @@ Each of Parts 1 - 5 is worth 10 points. Completing the readme.txt is worth 10 po
 
 Per the course policies, projects may be submitted up to 72 hours late, with a 10% point deduction per day.
 
-
+  
 <h2>Project Specifications</h2>
 
 

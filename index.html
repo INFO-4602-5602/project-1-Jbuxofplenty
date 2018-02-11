@@ -1,41 +1,83 @@
 <html>
 <head>
-<title>Project 0</title>
-<style type="text/css" href="project0.css"></style>
+<title>Project 1</title>
+<style type="text/css" href="project1.css"></style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!--Put your D3 import statement between these two lines-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 <!--Put your D3 import statement between these two lines-->
 </head>
 
 <body>
 	<div id="partOne">
         <h1>Part One: </h1>
-        I've made a change!
 	</div>
 
     <div id="partTwo">
         <h1>Part Two: </h1>
-        <div id="barchart">
+        <div id="scatterplot">
+          <h4>Scatterplot created by part2.js of the dataset contained in anscombe_I.csv</h4>
+          <script type="text/javascript" src="part2.js"></script>
         </div>
 	</div>
 
     <div id="partThree">
-        <h1>Part Three &amp; Four: </h1>
-        <div id="scatterplot">
-            <p id="scatterLabel"></p>
-        </div>
-	</div>
+      <h1>Part Three</h1>
+      <div id="linegraph">
+          <h4>Linegraph created by part3.js of the dataset contained in anscombe_I.csv</h4>
+          <script type="text/javascript" src="part3.js"></script>
+      </div>
+  </div>
+
+    <div id="partFour">
+      <h1>Part Four</h1>
+      <div id="scatterplot2">
+          <h4>Interactive scatterplot created by part4.js of the dataset contained in anscombe_I.csv</h4>
+          <script type="text/javascript" src="part4.js"></script>
+          <p id="scatterLabel"></p>
+      </div>
+  </div>
 
     <div id="partFive">
         <h1>Part Five: </h1>
         <div id="scatterplotSet">
+          <h4>Side by side scatterplots of all of the anscombe's datasets</h4>
+          <script type="text/javascript" src="part5.js"></script>
         </div>
 	</div>
 
     <script type="text/javascript">
-        // Put your part one code here ***********************
+        // First dataset
+        d3.csv("/data/anscombe_I.csv", function(error, data1){
+          if (error) throw error;
 
+          // Check to ensure the data was loaded properly
+          checkDataset(data1);
+        });
+
+        // Second dataset
+        d3.csv("/data/anscombe_II.csv", function(error, data2){
+          if (error) throw error;
+
+          // Check to ensure the data was loaded properly
+          checkDataset(data2);
+        });
+
+        // Third dataset
+        d3.csv("/data/anscombe_III.csv", function(error, data3){
+          if (error) throw error;
+
+          // Check to ensure the data was loaded properly
+          checkDataset(data3);
+        });
+
+        // Fourth dataset
+        d3.csv("/data/anscombe_IV.csv", function(error, data4){
+          if (error) throw error;
+
+          // Check to ensure the data was loaded properly
+          checkDataset(data4);
+        });
 
         // Leave this to test your data uploading. All data uploading should be above this line
         function checkDataset(dataset) {

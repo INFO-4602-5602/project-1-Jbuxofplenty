@@ -3,11 +3,28 @@ body {
     font-size: 11px;
 }
 
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
+#scatterplot {
+  /* thin blue line with no fill */
+  stroke: lightblue;
+  stroke-width: 4;
+  fill: none;
+}
+
+#linegraph {
+  /* thin green line with no fill */
+  stroke: green;
+  stroke-width: 4;
+}
+
+#scatterplot2 {
+  /* thin green line with no fill */
+  stroke: lightblue;
+  stroke-width: 4;
+  fill: none;
+}
+
+.container {
+  float: left;
 }
 
 .point {
