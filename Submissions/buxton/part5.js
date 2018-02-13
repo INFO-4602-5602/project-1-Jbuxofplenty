@@ -41,10 +41,10 @@ var svg6 = d3.select("#scatterplotSet").append("svg")
             .append("g")
             .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
-create_graph("/data/anscombe_I.csv", svg3, "Anscombe_I");
-create_graph("/data/anscombe_II.csv", svg4, "Anscombe_II");
-create_graph("/data/anscombe_III.csv", svg5, "Anscombe_III");
-create_graph("/data/anscombe_IV.csv", svg6, "Anscombe_IV");
+create_graph("../../data/anscombe_I.csv", svg3, "Anscombe_I");
+create_graph("../../data/anscombe_II.csv", svg4, "Anscombe_II");
+create_graph("../../data/anscombe_III.csv", svg5, "Anscombe_III");
+create_graph("../../data/anscombe_IV.csv", svg6, "Anscombe_IV");
 
 // Create Event Handlers for mouse (mouse out)
 function create_graph(filename, svg, dataset) {
@@ -54,11 +54,11 @@ function create_graph(filename, svg, dataset) {
     if (error) throw error;
 
     // Make the data numbers so they can be compared
-    data.forEach(function(d){ d[xVal] = parseFloat(d[xVal]); });
-    data.forEach(function(d){ d[yVal] = parseFloat(d[yVal]); });
+    data.forEach(function(d){ d[xVal] = +d[xVal]; });
+    data.forEach(function(d){ d[yVal] = +d[yVal]; });
 
     // Scale the range of the data
-    x1.domain(d3.extent(data, function(d) { return d[xVal]; }));
+    x1.domain([d3.min(data, function(d) { return d[yVal]; }) - 3, d3.max(data, function(d) { return d[yVal]; })+8]);
     y1.domain([0, d3.max(data, function(d) { return d[yVal]; })]);
 
     // Add the scatterplot points

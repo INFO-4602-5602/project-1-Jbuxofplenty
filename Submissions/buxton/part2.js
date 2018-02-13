@@ -17,15 +17,17 @@ var height = h - margins.top - margins.bottom;
 var x = d3.scaleLinear().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
 
-
-var svg1 = d3.select("#linegraph").append("svg")
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var svg = d3.select("#scatterplot").append("svg")
             .attr("width", width + margins.left + margins.right)
             .attr("height", height + margins.top + margins.bottom)
             .append("g")
             .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
-
 // Get the data
-d3.csv("/data/anscombe_I.csv", function(error, data){
+
+d3.csv("../../data/anscombe_I.csv", function(error, data){
   if (error) throw error;
 
   // Make the data numbers so they can be compared
@@ -33,48 +35,42 @@ d3.csv("/data/anscombe_I.csv", function(error, data){
   data.forEach(function(d){ d[yVal] = parseFloat(d[yVal]); });
 
   // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d[xVal]; }));
+  x.domain([d3.min(data, function(d) { return d[yVal]; }) - 1, d3.max(data, function(d) { return d[yVal]; }) + 4]);
   y.domain([0, d3.max(data, function(d) { return d[yVal]; })]);
 
-  // Sort the data
-  data.sort(function(x, y) {return d3.ascending(x[xVal], y[xVal]);});
-
-  // Define the line
-  var valueline = d3.line()
-      .x(function(d) { return x(d[xVal]); })
-      .y(function(d) { return y(d[yVal]); });
-
-   // Add the valueline line.
-   svg1.append("path")
-       .data([data])
-       .attr("class", "line")
-       .attr('stroke-width', 3)
-       .attr("stroke","lightgreen")
-       .attr("fill", "none")
-       .attr("d", valueline);
+  // Add the scatterplot points
+  svg.selectAll("circle")
+     .data(data)
+     .enter()
+     .append("circle")
+     .attr("r", 5)
+     .attr("x", function(d) {return d[xVal];})
+     .attr("y", function(d) {return d[yVal];})
+     .attr("cx", function(d) {return x(d[xVal]);})
+     .attr("cy", function(d) {return y(d[yVal]);})
+     .attr("fill","lightblue");
 
   // Add the X Axis
-  svg1.append("g")
+  svg.append("g")
      .attr("transform", "translate(0, " + height + ")")
-     .attr("fill","lightgreen")
+     .attr("fill","lightblue")
      .call(d3.axisBottom(x));
 
   // Add the Y Axis
-  svg1.append("g")
-     .attr("fill", "lightgreen")
+  svg.append("g")
+     .attr("fill","lightblue")
      .call(d3.axisLeft(y));
 
   // Add text labels
-  var xLabel = svg1.append("text")
+  var xLabel = svg.append("text")
                   .attr("class", "label")
                   .text(xVal)
                   .attr("x", width - 20)
                   .attr("y", height - 10);
 
-  var yLabel = svg1.append("text")
+  var yLabel = svg.append("text")
                   .attr("class", "label")
                   .text(yVal)
                   .attr("y", -10)
-                  .attr("transform", "rotate(90)")
-                  .style("text-anchor", "start");
+                  .attr("transform", "rotate(90)");
 });

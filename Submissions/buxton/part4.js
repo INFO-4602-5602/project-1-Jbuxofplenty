@@ -27,7 +27,7 @@ var svg2 = d3.select("#scatterplot2").append("svg")
             .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
 // Get the data
-d3.csv("/data/anscombe_I.csv", function(error, data){
+d3.csv("../../data/anscombe_I.csv", function(error, data){
   if (error) throw error;
 
   // Make the data numbers so they can be compared
@@ -35,7 +35,7 @@ d3.csv("/data/anscombe_I.csv", function(error, data){
   data.forEach(function(d){ d[yVal] = parseFloat(d[yVal]); });
 
   // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d[xVal]; }));
+  x.domain([d3.min(data, function(d) { return d[yVal]; }) - 1, d3.max(data, function(d) { return d[yVal]; }) + 4]);
   y.domain([0, d3.max(data, function(d) { return d[yVal]; })]);
 
   // Add the scatterplot points
